@@ -7,10 +7,6 @@ import os
 
 # import the webdriver, chrome driver is recommended
 driver = webdriver.Chrome(ChromeDriverManager().install())
-# driver.set_page_load_timeout(2)
-filename = ""
-maxcount = 100
-i=0
 cwd = os.getcwd()
    
 # function to check if the button is on the page, to avoid miss-click problem
@@ -22,7 +18,7 @@ def check_exists_by_xpath(xpath):
     return True
     time.sleep(2)
 
-#I tried
+#Function to check if there are any reviews that need to click on the 'more info.. / keep reading' web elements
 def more():
     snippet = driver.find_element_by_class_name('postSnippet')
     if len(snippet)>0:
@@ -31,7 +27,7 @@ def more():
         return False 
     
 
-pages_to_scrape = 3
+pages_to_scrape = 3 # <-- This depends on the overall pages that the website has, there are ways to automate this input but I just look at the driver browser pop up and write down how many pages I need to scrape :S 
 url = 'YOUR URL'
 driver.get(url)
 #to maximize the the tab 
@@ -49,8 +45,8 @@ for i in range(0, pages_to_scrape):
     time.sleep(2) 
 
     # Click the "expand review" link to reveal the entire review.
-    #driver.find_element_by_xpath(".//div[contains(@class, 'widgetEvCall')]").click()
-    #<span class="taLnk ulBlueLinks" onclick="widgetEvCall('handlers.clickExpand',event,this);">More</span>
+    driver.find_element_by_xpath(".//div[contains(@class, 'widgetEvCall')]").click()
+    <span class="taLnk ulBlueLinks" onclick="widgetEvCall('handlers.clickExpand',event,this);">More</span>
 
     # Now we'll ask Selenium to look for elements in the page and save them to a variable. First lets define a  container that will hold all the reviews on the page. In a moment we'll parse these and save them:
     container = driver.find_elements_by_xpath("//div[@data-reviewid]")
@@ -68,18 +64,14 @@ for i in range(0, pages_to_scrape):
         title = container[j].find_element_by_xpath(".//span[contains(@class, 'noQuotes')]").text
         #Grab the review
         review = container[j].find_element_by_xpath(".//div[contains(@class, 'entry')]").text.replace("\n", "  ") 
-        # if container[j].more() == True:
-        #     postSnippet = container[j].find_element_by_xpath(".//div[contains(@class, 'postSnippet')]").text.replace('\n', ' ')
-        # else: 
-        #     postSnippet = 'NA' 
         #Grab the data
-        #date = " ".join(dates[j].text.split(" ")[-2:])
+        date = " ".join(dates[j].text.split(" ")[-2:])
         
         #Save that data in the csv and then continue to process the next review
-        csvWriter.writerow([ rating, title, review])# postSnippet]) 
+        csvWriter.writerow([ date, rating, title, review])# postSnippet]) 
         
     # When all the reviews in the container have been processed, change the page and repeat            
-    #driver.find_element_by_xpath('.//a[@class="ui_button nav next primary "]').click()
+    driver.find_element_by_xpath('.//a[@class="ui_button nav next primary "]').click()
 
 # When all pages have been processed, quit the driver
 driver.quit()

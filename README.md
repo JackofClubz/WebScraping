@@ -41,8 +41,7 @@ Selenium retrieves information on the APIs based on their HTML location, in this
 ```sh
 title = container[j].find_element_by_xpath(".//span[contains(@class, 'noQuotes')]").text
 ```
-<img width="487" alt="image" src="https://user-images.githubusercontent.com/93539524/159172916-ded57345-2a0e-4e6c-9927-28c3850a5135.png">
-<img width="199" alt="image" src="https://user-images.githubusercontent.com/93539524/159172961-4f1b4e72-9c0f-4c8d-ac29-19c9030729ff.png">
+<img width="487" alt="image" src="https://user-images.githubusercontent.com/93539524/159172916-ded57345-2a0e-4e6c-9927-28c3850a5135.png"> <img width="199" alt="image" src="https://user-images.githubusercontent.com/93539524/159172961-4f1b4e72-9c0f-4c8d-ac29-19c9030729ff.png">
 <img width="960" alt="image" src="https://user-images.githubusercontent.com/93539524/159173008-92bb1cad-d4f4-4974-bc2b-815ffa479111.png">
 <img width="959" alt="image" src="https://user-images.githubusercontent.com/93539524/159173025-ce9c43d1-3e4f-4a5a-bfd5-de9fb40d52a4.png">
 

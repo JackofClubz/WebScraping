@@ -46,13 +46,12 @@ for i in range(0, pages_to_scrape):
 
     # Click the "expand review" link to reveal the entire review.
     driver.find_element_by_xpath(".//div[contains(@class, 'widgetEvCall')]").click()
-    <span class="taLnk ulBlueLinks" onclick="widgetEvCall('handlers.clickExpand',event,this);">More</span>
 
     # Now we'll ask Selenium to look for elements in the page and save them to a variable. First lets define a  container that will hold all the reviews on the page. In a moment we'll parse these and save them:
     container = driver.find_elements_by_xpath("//div[@data-reviewid]")
 
     # Next we'll grab the date of the review:
-    #dates = driver.find_elements_by_xpath(".//span[contains(@class, 'ratingDate')]")
+    dates = driver.find_elements_by_xpath(".//span[contains(@class, 'ratingDate')]")
     
    # Now we'll look at the reviews in the container and parse them out
 

@@ -19,9 +19,12 @@ I did not use a package manager :(, the tool simply runs with any ipynb and uses
 * Windows users:
   *  Latest version of [Python 3.7+](https://www.python.org/downloads/) and `python` on the `PATH`
   *  Import Pandas/csv and Requests
-  *  Make sure you have Selenium installed
+  *  Make sure you have Selenium and webdriver-manager installed
 ```sh
 pip install selenium
+```
+```sh
+pip install webdriver-manager
 ```
 
 ## Running the Tool
